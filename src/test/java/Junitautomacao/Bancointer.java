@@ -18,12 +18,17 @@ public class Bancointer {
 		//comando para apontar o driver do navegador
 		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
 		//comando para indicar o meu drive instanciado
-		driver = new ChromeDriver();
-		//comando para indicar o site a ser aberto
+		WebDriver driver = new ChromeDriver();
 		//comando para miximizar a tela
+		//comando para indicar o site a ser aberto
+		driver.get("https://www.4devs.com.br/gerador_de_pessoas");
 		driver.manage().window().maximize();
-		driver.get("https://inter.co/");
-		driver.findElement(By.cssSelector("#my-scroll-container > div.style__ModelsSectionBackground-sc-rff0fn-1.cNeHp.d-flex.align-items-end.align-items-md-center > div > div > div > div > div > button")).click();
+		//driver.findElement(By.cssSelector("#my-scroll-container > div.style__ModelsSectionBackground-sc-rff0fn-1.cNeHp.d-flex.align-items-end.align-items-md-center > div > div > div > div > div > button")).click();
+		driver.findElement(By.id("bt_gerar_pessoa")).click();
+		String nome;
+		nome = driver.findElement(By.id("nome")).getText();
+		System.out.println(nome);
+		//driver.quit();
 		
 					
 	}
@@ -37,8 +42,6 @@ public class Bancointer {
 	@Test
 	public void test() {
 		String texto;
-		//Comando para atrasar abertura, velocidade de abertura da página
-		//Thread.sleep(5000);
 		texto = driver.findElement(By.cssSelector("body > div.style__ModalContent-sc-wuavw4-0.jrzRxc > div.style__Container-sc-138k8xa-0.jrVwow.d-flex.align-items-center > div > div.col-12.text-center.py-4.pt-lg-0 > h2")).getText();
 		System.out.println(texto);
 		assertEquals("Abra agora sua Conta Digital", texto);
